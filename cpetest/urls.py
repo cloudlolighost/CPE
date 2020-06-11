@@ -19,6 +19,6 @@ from django.urls import path
 from CPE import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('CPE/',views.cpes)
+    path('CPE/', views.cpes)
 ]
 

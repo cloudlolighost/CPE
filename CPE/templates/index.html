@@ -4,20 +4,24 @@
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.css"/>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
 </head>
 <body>
 <div class="jumbotron text-center">
     <h1>CPE問題題庫</h1>
-    <p>收集了許多CPE的相關題目</p>
+    <p>收集了許多CPE的相關題目，大家快來練習吧!</p>
+    <p><a href="https://cpe.cse.nsysu.edu.tw/index.php">CPE報名網站</a></p>
 </div>
 </body>
 <div class="container">
       <h3>CPE問題整理</h3>
-        <table class="table" border="1">
+        <table id="data" class="table" boder="1">
           <thead>
             <tr>
                 <th><b>No.</b></th>
@@ -32,7 +36,7 @@
           <tbody>
             {% for topic in topics %}
             <tr>
-                <td><b>{{ topic.tittle_num }}</b></td>
+                <td><b>{{ topic.id }}</b></td>
                 <td>{{ topic.tittle }}</td>
                 <td>{{ topic.submissions_solving_count }}</td>
                 <td>{{ topic.submissions_solving }}</td>
@@ -43,27 +47,11 @@
             {% endfor %}
           </tbody>
         </table>
-        <p>
-        {#   topics.paginator.page_range 这个函数返回包含一个所有页码数的 range 对象 #}
-        {#   即 range(1, topics.paginator.num_pages + 1) #}
-        {% for page_number in topics.paginator.page_range %}
-            {% ifequal page_number  topics.number %}
-                {{ page_number }}
-            {% else %}
-                <a href="?page={{ page_number }}">{{ page_number }}</a>
-            {% endifequal %}
-        {% endfor %}
-        </p>
-        <!-- 另一种分页显示方式 -->
-        <p>
-        {% if topics.has_previous %}
-        <a href="?page={{ topics.previous_page_number }}">Previous</a>
-        {% endif %}
-        {# topics.paginator.number_pages 返回总页数 #}
-        Page {{ topics.number }} of {{ topics.paginator.num_pages }}.
-        {% if topics.has_next %}
-        <a href="?page={{ topics.next_page_number }}">Next</a>
-        {% endif %}
-        </p>
   </div>
 </html>
+
+<script>
+$(document).ready( function () {
+    $('#data').DataTable();
+} );
+</script>
