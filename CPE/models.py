@@ -1,9 +1,5 @@
 from django.db import models
 
-
-from django.db import models
-
-
 class Cpe(models.Model):
     id = models.BigIntegerField(primary_key=True)
     tittle = models.TextField(blank=True, null=True)
@@ -18,10 +14,12 @@ class Cpe(models.Model):
     output = models.TextField(db_column='Output', blank=True, null=True)  # Field name made lowercase.
     sample_input = models.TextField(db_column='Sample Input', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     sample_output = models.TextField(db_column='Sample output', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    difficulty = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'cpe'
+
 
 
 

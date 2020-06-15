@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>CPE問題題庫</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.css"/>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -15,13 +14,14 @@
 <body>
 <div class="jumbotron text-center">
     <h1>CPE問題題庫</h1>
-    <p>收集了許多CPE的相關題目，大家快來練習吧!</p>
-    <p><a href="https://cpe.cse.nsysu.edu.tw/index.php">CPE報名網站</a></p>
+        <p>可以利用編號和文字在右上角search bar尋找想要練習的題目，左上角則可以選擇一次想要顯示出來的題目數量</p>
+        <p>也可以選擇和Line bot交談來練習英文，我們網站收集了許多CPE的相關題目，大家快來練習吧!</p>
+        <p><a href="https://cpe.cse.nsysu.edu.tw/index.php">CPE報名網站</a></p>
 </div>
 </body>
 <div class="container">
       <h3>CPE問題整理</h3>
-        <table id="data" class="table" boder="1">
+        <table id="data" class="table">
           <thead>
             <tr>
                 <th><b>No.</b></th>
@@ -30,6 +30,7 @@
                 <th>遞交答案正確比例</th>
                 <th>參與人數</th>
                 <th>解決問題人數比例</th>
+                <th>難易度</th>
                 <th>下載PDF</th>
             </tr>
           </thead>
@@ -42,6 +43,7 @@
                 <td>{{ topic.submissions_solving }}</td>
                 <td>{{ topic.users_solving_count }}</td>
                 <td>{{ topic.users_solving }}</td>
+                <td>{{ topic.difficulty }}顆星</td>
                 <td><li><a href="{{ topic.pdf_link }}">PDF檔下載</a></li></td>
             </tr>
             {% endfor %}
@@ -52,6 +54,14 @@
 
 <script>
 $(document).ready( function () {
-    $('#data').DataTable();
-} );
+    $('#data').DataTable({
+        "bPaginate": true,
+        "bLengthChange": true,
+        "bFilter": true,
+        "bSort": true,
+        "bInfo": false,
+        "bAutoWidth": true,
+        "bProcessing": true
+    });
+});
 </script>
