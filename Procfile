@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath cpetest mysite.wsgi
+web: gunicorn --pythonpath cpetest cpetest.wsgi --log-file -
