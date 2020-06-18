@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <title>CPE問題題庫</title>
     <meta charset="utf-8">
@@ -10,13 +11,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.css"/>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.js"></script>
 </head>
 <body>
 <div class="jumbotron text-center">
-    <h1>CPE問題題庫</h1>
-        <p>可以利用編號和文字在右上角search bar尋找想要練習的題目，左上角則可以選擇一次想要顯示出來的題目數量</p>
-        <p>也可以選擇和Line bot交談來練習英文，我們網站收集了許多CPE的相關題目，大家快來練習吧!</p>
-        <p><a href="https://cpe.cse.nsysu.edu.tw/index.php">CPE報名網站</a></p>
+    <div class="row">
+        <div class="col-10" >
+            <h1>CPE問題題庫</h1>
+                <p>可以利用編號和文字在右上角search bar尋找想要練習的題目，左上角則可以選擇一次想要顯示出來的題目數量</p>
+                <p>也可以選擇和Line bot交談來練習英文，我們網站收集了許多CPE的相關題目，大家快來練習吧!</p>
+                <p><a href="https://cpe.cse.nsysu.edu.tw/index.php">CPE報名網站</a></p>
+        </div>
+        <div class="col-1"><img src="{% static "QRcode.png" %}" alt="My image" width="180%"></div>
+    </div>
 </div>
 </body>
 <div class="container">
@@ -61,7 +78,18 @@ $(document).ready( function () {
         "bSort": true,
         "bInfo": false,
         "bAutoWidth": true,
-        "bProcessing": true
+        "bProcessing": true,
+        dom: 'Bfrtip',
+        buttons: [
+        {
+            extend: 'excel',//使用 excel扩展
+            text: '下載資料',// 显示文字
+            exportOptions: {
+                //自定義導出那些行那些列
+            }
+        }
+    ]
     });
+
 });
 </script>
