@@ -15,7 +15,15 @@ def cpes(request):
     # return render(request, ‘blog/index.html’, {“article”: articles})
     # 获取全部博客信息
     # limit = 10  # 每页显示的记录数
-    topics = Cpe.objects.all()
+    topics = Cpe.objects.order_by('id')
+    id = Cpe.id
+    tittle = Cpe.tittle
+    submissions_solving_count = Cpe.submissions_solving_count
+    submissions_solving = Cpe.submissions_solving
+    users_solving_count = Cpe.users_solving_count
+    users_solving_persent = Cpe.users_solving_persent
+    difficulty = Cpe.difficulty
+
     # paginator = Paginator(topics, limit)  # 实例化一个分页对象
     # page = request.GET.get('page')  # 获取页码
     # try:
